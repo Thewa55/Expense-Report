@@ -1,10 +1,12 @@
+import './ExpenseItem.css'
+
 const ExpenseItem = () =>{
     return(
-        <div>
+        <div className="expense-item">
             <div>Date</div>
-            <div>
-                <h2>Expense Item</h2>
-                <div>Expense Amount</div>
+            <div className="expense-item__description">
+                <h2 >Expense Item</h2>
+                <div className="expense-item__price">Expense Amount</div>
             </div>
         </div>
     );
