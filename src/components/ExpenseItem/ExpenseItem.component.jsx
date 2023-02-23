@@ -1,4 +1,5 @@
 import './ExpenseItem.css'
+import { Card } from '../Card/Card.component'
 
 const ExpenseItem = (props) =>{
     
@@ -7,17 +8,17 @@ const ExpenseItem = (props) =>{
     const year = props.initData.date.getFullYear();
 
     return(
-        <div className="expense-item">
-            <div>
-                <div>{month}</div>
-                <div>{day}</div>
-                <div>{year}</div>
+        <Card className="expense-item">
+            <div className="expense-date">
+                <div className="expense-date__month">{month}</div>
+                <div className="expense-date__day">{day}</div>
+                <div className="expense-date__year">{year}</div>
             </div>
             <div className="expense-item__description">
                 <h2 >{props.initData.title}</h2>
                 <div className="expense-item__price">${props.initData.amount}</div>
             </div>
-        </div>
+        </Card>
     );
 }
 

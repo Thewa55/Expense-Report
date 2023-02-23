@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './App.css';
-import ExpenseItem from './components/ExpenseItem.component';
+import ExpenseItem from './components/ExpenseItem/ExpenseItem.component';
 import { expenseData } from './util/InitialData.js'
+import { Card } from './components/Card/Card.component'
 
 
 function App() {
@@ -10,10 +11,12 @@ function App() {
 
   return (
     <div className="App">
-      {initData ? initData.map(data => {
-        return (<ExpenseItem initData={data}/>)
-      }) : <div>No data</div>
-    }
+      <Card className="expenses">
+        {initData ? initData.map(data => {
+          return (<ExpenseItem initData={data}/>)
+          }) : <div>No data</div>
+        }
+      </Card>
     </div>
   );
 }

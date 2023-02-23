@@ -2,13 +2,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     padding: 0.5rem;
     margin: 1rem 0;
-    border-radius: 12px;
     background-color: #4b4b4b;
   }
   
+  .expense-date{
+    background-color: #2a2a2a;
+    color: white;
+    padding: 1rem;
+    border-radius: .75rem;
+    border: 1px solid #ececec;
+    width: 4rem;
+    height: 4rem;
+  }
+
   .expense-item__description {
     display: flex;
     flex-direction: column;
@@ -34,7 +42,7 @@
     background-color: #40005d;
     border: 1px solid white;
     padding: 0.5rem;
-    border-radius: 12px;
+    border-radius: .75rem;
   }
   
   @media (min-width: 580px) {
