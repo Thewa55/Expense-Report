@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import ExpenseItem from './components/ExpenseItem/ExpenseItem.component';
 import NewExpense from "./components/NewExpense/NewExpense.component";
@@ -8,11 +8,21 @@ import { Card } from './components/Card/Card.component'
 
 function App() {
 
-  const [initData] = useState(expenseData);
+  const [initData, setInitData] = useState(expenseData);
+
+  const expenseSubmitted = (expense) => {
+    console.log(expense);
+    console.log(initData);
+    setInitData(prevData => [...prevData, expense]);
+  }
+
+  useEffect(() => {
+    console.log(initData)
+}, [initData])
 
   return (
     <div className="App">
-      <NewExpense />
+      <NewExpense submit={expenseSubmitted} />
       <Card className="expenses">
         {initData ? initData.map(data => {
           return (<ExpenseItem initData={data}/>)
