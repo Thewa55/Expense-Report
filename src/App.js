@@ -11,7 +11,7 @@ function App() {
 
   const [initData, setInitData] = useState(expenseData);
   const [filterYears, setFilterYears] = useState([]);
-  const [yearSelected, setYearSelected] = useState();
+  const [yearSelected, setYearSelected] = useState(0);
 
   const expenseSubmitted = (expense) => {
     setInitData(prevData => [...prevData, expense]);
@@ -25,6 +25,17 @@ function App() {
 
   const userSelectedYear = (e) => {
     console.log(e.target.value);
+    setYearSelected(parseInt(e.target.value));
+  }
+
+  const expenseFitler = (exp) => {
+    if(yearSelected === 0){
+      return exp;
+    } else if(exp.date.getFullYear() === yearSelected){
+      return exp;
+    } else {
+      return false;
+    }
   }
 
   useEffect(() => {
@@ -37,13 +48,10 @@ function App() {
     <div className="App">
       <NewExpense submit={expenseSubmitted} />
       <ExpenseFilter years={filterYears} selectedYear={(e) => userSelectedYear(e) }/>
-      {/* <select id="cars" name="cars">
-        {filterYears.map(year => {
-          return (<option value={year}>{year}</option>) 
-        })}
-      </select>  */}
       <Card className="expenses">
-        {initData ? initData.map(data => {
+        {initData ? initData
+          .filter(expenseFitler)
+          .map(data => {
           return (<ExpenseItem initData={data} key={data.id}/>)
           }) : <div>No data</div>
         }
