@@ -24,18 +24,11 @@ function App() {
   }
 
   const userSelectedYear = (e) => {
-    console.log(e.target.value);
     setYearSelected(parseInt(e.target.value));
   }
 
   const expenseFitler = (exp) => {
-    if(yearSelected === 0){
-      return exp;
-    } else if(exp.date.getFullYear() === yearSelected){
-      return exp;
-    } else {
-      return false;
-    }
+    return (yearSelected === 0 || exp.date.getFullYear() === yearSelected) ? exp : false;
   }
 
   useEffect(() => {
@@ -50,7 +43,7 @@ function App() {
       <ExpenseFilter years={filterYears} selectedYear={(e) => userSelectedYear(e) }/>
       <Card className="expenses">
         {initData ? initData
-          .filter(expenseFitler)
+          .filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected)
           .map(data => {
           return (<ExpenseItem initData={data} key={data.id}/>)
           }) : <div>No data</div>
