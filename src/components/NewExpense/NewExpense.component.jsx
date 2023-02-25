@@ -19,6 +19,22 @@ const NewExpense = (props) => {
     //     expenseTitle.current.value = ''
     // }
 
+
+    // const [userInput, setUserInput] = useState({
+    //     title: '',
+    //     amount: '',
+    //     date: ''
+    // })
+
+    // const updateField = (event) => {
+    //     console.log(event.target.dataset.field)
+    //     setUserInput({
+    //         ...userInput,
+            
+    //     })
+    // }
+
+
     const initialState = {};
 
     const reducer = (state, action) => {
@@ -39,21 +55,6 @@ const NewExpense = (props) => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const [userInput, setUserInput] = useState({
-        title: '',
-        amount: '',
-        date: ''
-    })
-
-    const updateField = (event) => {
-        console.log(event.target.dataset.field)
-        setUserInput({
-            ...userInput,
-            
-        })
-    }
-
-
     const submitExpense = (event) => {
         event.preventDefault();
         console.log('On submit clicked: ',state);
@@ -68,7 +69,7 @@ const NewExpense = (props) => {
     }, [state])
 
     return (
-        <div class="new-expense">
+        <div className="new-expense">
             <form onSubmit={submitExpense} id="expense-form">
                 {/* <div className="new-expense__controls">
                     <div className="new-expense__control">
