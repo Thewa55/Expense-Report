@@ -22,7 +22,6 @@ const NewExpense = (props) => {
     const initialState = {};
 
     const reducer = (state, action) => {
-
         switch(action.field){
             case 'title':
                 return {...state, title: action.value}
@@ -31,11 +30,13 @@ const NewExpense = (props) => {
             case 'date':
                 return {...state, date: new Date(action.value.replaceAll('-','/')) , fieldDate: action.value}
             case 'id':
-                return{id: action.value, title: '', amount: 0, date: '', fieldDate: ''}
+                return {id: action.value}
+                //return {id: action.value, title: '', amount: 0, date: '', fieldDate: ''}
             default:
                 return ''
         }
     }
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const [userInput, setUserInput] = useState({
@@ -57,17 +58,18 @@ const NewExpense = (props) => {
         event.preventDefault();
         console.log('On submit clicked: ',state);
         props.submit(state);
-        dispatch({field: 'id', value: Math.floor(Math.random() * 1000)})
+        document.getElementById("expense-form").reset();
+        dispatch({field: 'id', value: (Math.floor(Math.random() * 1000) + '')})
     }
 
     useEffect(() => {
-        initialState.id = Math.floor(Math.random() * 1000);
+        initialState.id = Math.floor(Math.random() * 1000) + '';
         console.log(state)
     }, [state])
 
     return (
         <div class="new-expense">
-            <form onSubmit={submitExpense}>
+            <form onSubmit={submitExpense} id="expense-form">
                 {/* <div className="new-expense__controls">
                     <div className="new-expense__control">
                         <label>Title</label>
