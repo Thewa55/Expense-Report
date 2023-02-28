@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Chart from '../Chart/Chart.component';
 // import { chartDataPoints } from "../../util/ChartDataPoints";
 
@@ -23,12 +23,15 @@ const ExpenseChart = props => {
         const index = chartDataPoints.findIndex(data => {return data.label === expenseMonth});
         // console.log(expenseMonth);        
         // console.log(index);
+        chartDataPoints[index].value += expense.amount;
+        console.log(expenseMonth);
+        console.log(chartDataPoints[index].value);
     })
 
     
     return(
         <div>
-            {/* <Chart /> */}
+            <Chart dataPoints={chartDataPoints}/>
         </div>
 
     )
