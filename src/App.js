@@ -61,9 +61,9 @@ function App() {
   return (
     <div className="App">
       <NewExpense submit={expenseSubmitted} />
-      <ExpenseChart expenses={filteredData} yearSelected={yearSelected}/>
       <Card className="expenses">
         <ExpenseFilter years={filterYears} selectedYear={(e) => userSelectedYear(e) }/>
+        <ExpenseChart expenses={filteredData} yearSelected={yearSelected}/>
         {expenseContent}
       </Card>
     </div>

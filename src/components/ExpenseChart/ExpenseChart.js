@@ -17,21 +17,21 @@ const ExpenseChart = props => {
     { label: 'Nov', value: 0 },
     { label: 'Dec', value: 0 } ]
 
+    let maxValue = 0;
 
     props.expenses.forEach( expense => {
         const expenseMonth = expense.date.toLocaleString('en-US', {month: 'short'});
         const index = chartDataPoints.findIndex(data => {return data.label === expenseMonth});
-        // console.log(expenseMonth);        
-        // console.log(index);
         chartDataPoints[index].value += expense.amount;
-        console.log(expenseMonth);
-        console.log(chartDataPoints[index].value);
+        // console.log(expenseMonth);
+        // console.log(chartDataPoints[index].value);
+        maxValue = maxValue < chartDataPoints[index].value ? chartDataPoints[index].value : maxValue;
     })
 
     
     return(
         <div>
-            <Chart dataPoints={chartDataPoints}/>
+            <Chart dataPoints={chartDataPoints} maxValue={maxValue}/>
         </div>
 
     )
