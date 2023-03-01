@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import './ChartBar.css';
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ const ChartBar = props => {
         }
         
         & .chart-bar__fill {
-            background-color: #4826b9;
+            background-color: ${props => props.tallest ? 'red' : '#4826b9'};
             width: 100%;
             transition: all 0.3s ease-out;
         }
@@ -36,14 +36,16 @@ const ChartBar = props => {
     `
 
     let barFillHeight = '0%';
+    let tallest = false;
 
     if(props.maxValue > 0){
         barFillHeight = Math.round((props.value/props.maxValue) * 100) + '%';
+        tallest = (barFillHeight === '100%' ? true : false);
     }
 
     return ( 
         // <div className="chart-bar">
-        <Bar>
+        <Bar tallest={tallest}>
             <div className="chart-bar__inner">
                 <div className="chart-bar__fill" style={{height: barFillHeight}}>
                 </div>   
@@ -52,7 +54,6 @@ const ChartBar = props => {
                 {props.label}
             </div>
         </Bar>
-
         // </div>
     )
 }
