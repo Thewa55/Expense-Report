@@ -3,6 +3,8 @@ import { Card } from '../Card/Card.component'
 
 const ExpenseItem = (props) =>{
     
+    console.log(props);
+
     const month = props.initData.date.toLocaleString('en-US', {month: 'short'});
     const day = props.initData.date.toLocaleString('en-US', {day: '2-digit'});
     const year = props.initData.date.getFullYear();

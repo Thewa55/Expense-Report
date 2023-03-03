@@ -1,5 +1,5 @@
 import React, {useState, useRef, useReducer, useEffect} from 'react';
-import './NewExpense.css';
+import styles from './NewExpense.module.css';
 
 const NewExpense = (props) => {
 
@@ -67,7 +67,7 @@ const NewExpense = (props) => {
     }, [state])
 
     return (
-        <div className="new-expense">
+        <div className={`${styles["new-expense"]}`}>
             <form onSubmit={submitExpense} id="expense-form">
                 {/* <div className="new-expense__controls">
                     <div className="new-expense__control">
@@ -99,22 +99,22 @@ const NewExpense = (props) => {
                     </div>
                 </div> */}
 
-                <div className="new-expense__controls">
-                    <div className="new-expense__control">
+                <div className={`${styles["new-expense__controls"]}`}>
+                    <div className={`${styles["new-expense__control"]}`}>
                         <label>Title</label>
                         <input type="text" onChange={(e) => dispatch({field: 'title', value: e.target.value})} value={state.title}/>
                     </div>
-                    <div className="new-expense__control">
+                    <div className={`${styles["new-expense__control"]}`}>
                         <label>Amount</label>
                         <input type="number" min="0.01" step="0.01" onChange={(e) => dispatch({field: 'amount', value: e.target.value})} value={state.amount}/>
                     </div>
-                    <div className="new-expense__control">
+                    <div className={`${styles["new-expense__control"]}`}>
                         <label>Date</label>
                         <input type="date" onChange={(e) => dispatch({field: 'date', value: e.target.value})} value={state.fieldDate}/>
                     </div>
                 </div>
 
-                <div className="new-expense__actions">
+                <div className={`${styles["new-expense__actions"]}`}>
                     <button type="submit" >Add Expense</button>
                 </div>
             </form>
