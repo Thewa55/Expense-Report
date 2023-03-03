@@ -31,21 +31,11 @@ function App() {
   }
 
   let expenseContent = <div>No data</div>;
-
   let expenseChart =  <div>No data</div>;
 
   if(initData.length > 0){
-    expenseContent = initData
-      .filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected)
-      .map(data => {
-      return (<ExpenseItem initData={data} key={data.id}/>)
-    })
-
-    let filteredExpenses = initData
-      .filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected)
-      .map(data => {
-      return (data)
-    })
+    let filteredExpenses = initData.filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected)
+    expenseContent = filteredExpenses.map(data => { return (<ExpenseItem initData={data} key={data.id}/>)})
     expenseChart = <ExpenseChart expenses={filteredExpenses} yearSelected={yearSelected}/>
   }
 
