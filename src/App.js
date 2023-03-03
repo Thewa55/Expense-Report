@@ -13,31 +13,21 @@ function App() {
   const [initData, setInitData] = useState(expenseData);
   const [filterYears, setFilterYears] = useState([]);
   const [yearSelected, setYearSelected] = useState(0);
-  const [filteredData, setFilteredData] = useState(expenseData);
 
   const expenseSubmitted = (expense) => {
     console.log(expense);
     setInitData(prevData => [...prevData, expense]);
     getYear();
-    dataFilter();
   }
 
   const getYear = () => {
     let years = [...new Set(initData.map(expense => { return expense.date.getFullYear()}))];
     setFilterYears(years.sort((a, b) => a - b));
-    // dataFilter()
   }
 
   const userSelectedYear = (e) => {
     let incomingYear = parseInt(e.target.value);
     setYearSelected(incomingYear);
-    dataFilter()
-  }
-
-
-  const dataFilter = () => {
-    let dataSelected = initData.filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected);
-    setFilteredData(dataSelected);
   }
 
   let expenseContent = <div>No data</div>;
@@ -45,7 +35,6 @@ function App() {
   let expenseChart =  <div>No data</div>;
 
   if(initData.length > 0){
-    console.log(yearSelected);
     expenseContent = initData
       .filter(exp => yearSelected === 0 || exp.date.getFullYear() === yearSelected)
       .map(data => {
@@ -60,18 +49,11 @@ function App() {
     expenseChart = <ExpenseChart expenses={filteredExpenses} yearSelected={yearSelected}/>
   }
 
-  // if(filteredData.length > 0){
-  //   expenseContent = filteredData
-  //     .map(data => {
-  //     return (<ExpenseItem initData={data} key={data.id}/>)
-  //   })
-  // }
-
   useEffect(() => {
     getYear();
     console.log(initData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initData, filteredData, yearSelected])
+  }, [initData, yearSelected])
 
   return (
     <div className="App">
